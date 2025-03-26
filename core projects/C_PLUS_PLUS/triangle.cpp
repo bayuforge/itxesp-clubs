@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main() 
+{
     int i;  // for every n iteration
     int a;  // creates how many spaces before dots 
     int b;  // creates n many dots
