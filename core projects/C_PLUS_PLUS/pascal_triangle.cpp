@@ -1,89 +1,105 @@
 #include <iostream>
 using namespace std;
 
+void subzero(int so_length, bool checks);
+void surfacelevel(int sl_length);
+
+int r; // Calculate how many iteration or triangle length
+int s1, s2; // first space and second space
+int c; // the main triangle
+int length; // triangle length val
+
+string space = " ";
+
+int main()
+{
+    cout << "Enter pascal triangle length: ";
+    cin >> length;
+
+    if (length > 2)
+    {
+        subzero(length, true);
+    }
+
+    else
+    {
+        subzero(length, false);
+    }
+}
+
 
 void subzero(int so_length, bool checks)
 {
-    // subzero func only executes if length range 0 - 1
-    // also if length > 1 if checks = True
-    
-    int i; // calculate how many iteration / length
-    int s1, c, s2; //s1 for first spacing, s2 last, c is the main
-    int column_db[so_length];
-    string space = " "; // string contains space character.
-    
-    for (i = 0; i <= length; i++)
+    int i_counter = 0;
+
+    for (r = 0; r <= so_length; r++)
     {
-        for (s1 = length; s1 > i; s1--)
+        for (s1 = so_length; s1 > r; s1--)
         {
             cout << space;
         }
-            
+
         cout << space;
-        
-        for (c = 0; c < i; c++)
+
+        for (c = 0; c < r; c++)
         {
             cout << 1;
-            cin >> column_db[c] = 1;
             cout << space;
         }
-          
-        if (sizeof(column_db) == 8) // size of an array is in bytes, 4 bytes exactly. (4 x 2 = 8)
-        {
-            
-        }
-        
-        for (s2 = length; s2 > i; s2--)
+
+        for (s2 = so_length; s2 > r; s2--)
         {
             cout << space;
         }
-            
-            
+
+        i_counter++;
         cout << endl;
     }
-    
+
     if (checks == true)
     {
+        so_length = so_length - i_counter;
         surfacelevel(so_length);
     }
-    
-    // for devs: func have to go back from surfacelevel to here
-    // to pull remanining statement (below)
-    cout << endl << "Iteration Complete";
 }
 
 
 void surfacelevel(int sl_length)
 {
-    // surface level func is only executed after subzero with
-    // checks = True, and if length > 1.
-    
-    int i; // calculate how many iteration / length
-    int n_sum; // calculate how many addition of n collumn
-    int s1, c, s2; //s1 for first spacing, s2 last, c is the main
-    
-    string space = " "; // string contains space character.
-}
+    int row = 3; // current row value
+    int cln = 1; // current collumn val
 
-int main(int throw_length) 
-{
-    int i; // calculate how many iteration / length
-    int n_sum; // calculate how many addition of n collumn
-    int s1, c, s2; //s1 for first spacing, s2 last, c is the main
-    int length; // stores the length of triangles. input by user
-    string space = " "; // string contains space character.
-    
-    cout << "Enter pascal length: ";
-    cin >> length;
-    
-    if (length > 1 || throw_length > 1)
+    for (r = 0; r <= sl_length; r++)
     {
-        
-        subzero(length, true);
-    }
-    
-    else
-    {
-        subzero(length, false);
+        int current_val = 1;
+
+        for (s1 = sl_length; s1 > r; s1--)
+        {
+            cout << space;
+        }
+
+        cout << space;
+        cout << current_val;
+        cout << space; 
+
+        for (c = 0; c < r - 1; c++)
+        {
+            int numreator = row - cln;
+            int denominator = cln + 1;
+            int new_val = current_val * numreator / denominator;
+
+            cout << new_val << space;
+            cln++;
+            current_val = new_val;
+        }
+
+
+        for (s2 = sl_length; s2 > r; s2--)
+        {
+            cout << space;
+        }
+
+        cout << endl;
+        row++;
     }
 }
